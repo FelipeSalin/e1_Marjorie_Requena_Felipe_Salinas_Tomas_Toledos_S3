@@ -147,3 +147,10 @@ footer {
 .categoria-card:hover h3 {
     color: #f9c74f;
 }
+
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; 
+    object-fit: contain;
+}
