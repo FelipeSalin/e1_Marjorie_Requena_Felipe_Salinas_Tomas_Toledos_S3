@@ -1,3 +1,4 @@
+/* Declarando errores */
 const form = document.getElementById('formulario_registro');
 
 const nombreInput = document.getElementById('nombre');
@@ -7,68 +8,85 @@ const contrasennaInput = document.getElementById('pass');
 const contrasenna2Input = document.getElementById('pass2');
 const fechaInput = document.getElementById('fecha');
 
+
+/* Construyendo funciones de error y limpiar error */
+function mostrarError(id, mensaje) {
+    document.getElementById(id).classList.add('is-invalid');
+    document.getElementById(id + '-error').innerText = mensaje;
+}
+
+function limpiarErrores() {
+    const campos = ['nombre', 'usuario', 'mail', 'pass', 'pass2', 'fecha'];
+    campos.forEach(campo => {
+        document.getElementById(campo + '-error').innerText = "";
+        document.getElementById(campo).classList.remove("is-invalid");
+    });
+}
+
 form.addEventListener('submit', function (event) {
     event.preventDefault();
+    limpiarErrores();
 
-    document.getElementById('nombre-error').innerHTML = '';
-    document.getElementById('usuario-error').innerHTML = '';
-    document.getElementById('mail-error').innerHTML = '';
-    document.getElementById('pass-error').innerHTML = '';
-    document.getElementById('pass2-error').innerHTML = '';
-    document.getElementById('fecha-error').innerHTML = '';
+    let valido = true;
 
-    if (nombreInput.value === '') {
-        document.getElementById('nombre-error').innerHTML = 'Por favor, ingresa un nombre válido';
-        return;
+    if (nombreInput.value.trim() === '') {
+        mostrarError('nombre', 'Por favor, ingresa un nombre válido');
+        valido = false;
     }
 
-    if (usuarioInput.value === '') {
-        document.getElementById('usuario-error').innerHTML = 'Por favor, ingresa un nombre de usuario válido';
-        return;
+    if (usuarioInput.value.trim() === '') {
+        mostrarError('usuario', 'Por favor, ingresa un nombre de usuario válido');
+        valido = false;
     }
 
-    if (correoInput.value === '') {
-        document.getElementById('mail-error').innerHTML = 'Por favor, ingresa un correo válido';
-        return;
-    }
-
-    const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!mailRegex.test(correoInput.value)) {
-        document.getElementById('mail-error').innerHTML = 'El campo email debe tener un formato válido';
-        return;
+    if (correoInput.value.trim() === '') {
+        mostrarError('mail', 'Por favor, ingresa un correo válido');
+        valido = false;
+    } else {
+        const mailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!mailRegex.test(correoInput.value)) {
+            mostrarError('mail', 'El campo email debe tener un formato válido');
+            valido = false;
+        }
     }
 
     if (contrasennaInput.value === '') {
-        document.getElementById('pass-error').innerHTML = 'Por favor, ingresa una contraseña válida';
-        return;
-    }
-
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,18}$/;
-    if (!passwordRegex.test(contrasennaInput.value)) {
-        document.getElementById('pass-error').innerHTML = 'La contraseña debe tener de 6 a 18 caracteres, incluir al menos una mayúscula, un número y no contener caracteres especiales.';
-        return;
+        mostrarError('pass', 'Por favor, ingresa una constraseña válida');
+        valido = false;
+    } else {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,18}$/;
+        if (!passwordRegex.test(contrasennaInput.value)) {
+            mostrarError('pass', 'La contraseña debe tener de 6 a 18 caracteres, incluir al menos una mayúscula, un número y no contener caracteres especiales');
+            valido = false;
+        }
     }
 
     if (contrasenna2Input.value !== contrasennaInput.value) {
-        document.getElementById('pass2-error').innerHTML = 'La contraseña debe ser igual a la anterior';
-        return;
+        mostrarError('pass2', 'La constraseña debe ser igual a la anterior');
+        valido = false;
     }
 
     if (fechaInput.value === '') {
-        document.getElementById('fecha-error').innerHTML = 'Por favor, ingresa una fecha válida';
-        return;
+        mostrarError('fecha', 'Por favor, ingresa una fecha válida');
+        valido = false;
+    } else {
+        const fechaNacimiento = new Date(fechaInput.value);
+        const fechaHoy = new Date();
+        let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
+        const fechaMes = fechaHoy.getMonth() - fechaNacimiento.getMonth();
+        if (fechaMes < 0 || (fechaMes === 0 && fechaHoy.getDate() < fechaNacimiento.getDate())) {
+            edad--;
+        }
+
+        if (edad < 13) {
+            mostrarError('fecha', 'Debes tener al menos 13 años para poder registrarte');
+            valido = false;
+        }
     }
 
-    const fechaNacimiento = new Date(fechaInput.value);
-    const fechaHoy = new Date();
-    let edad = fechaHoy.getFullYear() - fechaNacimiento.getFullYear();
+    if (valido) {
+        alert('¡Registrado Exitosamente!');
 
-    if (edad < 13) {
-        document.getElementById('fecha-error').innerHTML = 'Debes tener al menos 13 años para poder registrarte';
-        return;
+        form.submit();
     }
-
-    alert('¡Registrado Exitosamente!');
-
-    form.submit();
 });
