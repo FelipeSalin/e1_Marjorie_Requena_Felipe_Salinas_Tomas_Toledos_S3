@@ -55,64 +55,31 @@
 
 
         <div class="container">
-            <h1 class="text-center">Registro de usuario</h1>
+            <h1 class="text-center">Inicio de sesión</h1>
             <div class="row justify-content-center">
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">
-                            <form id="formulario_registro" action="" novalidate>
+                            <form id="formulario_ingreso" action="" novalidate>
                                 <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre Completo <span style="color: red;">*</span></label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" required autocomplete="on"
-                                        placeholder="Ingrese su nombre completo">
-                                    <small class="text-danger" id="nombre-error"></small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="usuario" class="form-label">Nombre de Usuario <span style="color: red;">*</span></label>
+                                    <label for="usuario" class="form-label">Nombre de Usuario</label>
                                     <input type="text" class="form-control" name="usuario" id="usuario"
                                         placeholder="Ingrese un nombre de usuario">
                                     <small class="text-danger" id="usuario-error"></small>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="mail" class="form-label">Correo Electrónico <span style="color: red;">*</span></label>
-                                    <input type="email" class="form-control" name="mail" id="mail" required autocomplete="on"
-                                        placeholder="Ingrese su correo electrónico">
-                                    <small class="text-danger" id="mail-error"></small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="pass" class="form-label">Contraseña <span style="color: red;">*</span></label>
+                                    <label for="pass" class="form-label">Contraseña</label>
                                     <input type="password" class="form-control" name="pass" id="pass" required autocomplete="on"
                                         placeholder="Ingrese su contraseña">
                                     <small class="text-danger" id="pass-error"></small>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="pass2" class="form-label">Repita Contraseña <span style="color: red;">*</span></label>
-                                    <input type="password" class="form-control" name="pass2" id="pass2" required autocomplete="off"
-                                        placeholder="Repita su contraseña">
-                                    <small class="text-danger" id="pass2-error"></small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="fecha" class="form-label">Fecha de Nacimiento <span style="color: red;">*</span></label>
-                                    <input type="date" class="form-control" name="fecha" id="fecha">
-                                    <small class="text-danger" id="fecha-error"></small>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="domicilio" class="form-label">Domicilio</label>
-                                    <input type="text" class="form-control" name="domicilio" id="domicilio" required autocomplete="on"
-                                        placeholder="Indicar dirección de despacho">
-                                </div>
-
-                                <span style="color: red;">*</span> = Campo Obligatorio 
+                                <a href="/formulario_recuperarpw.html">¿Olvidaste tu contraseña?</a>
 
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary"
-                                        style="width: 40%; margin-bottom: 5px">Registrar Usuario</button>
+                                        style="width: 40%; margin-bottom: 5px">Iniciar sesión</button>
                                 </div>
 
                                 <div class="d-grid">
