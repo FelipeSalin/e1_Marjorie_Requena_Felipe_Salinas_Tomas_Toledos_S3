@@ -86,7 +86,6 @@ form.addEventListener('submit', function (event) {
 
     if (valido) {
         alert('¡Registrado Exitosamente!');
-
         form.submit();
     }
 });
