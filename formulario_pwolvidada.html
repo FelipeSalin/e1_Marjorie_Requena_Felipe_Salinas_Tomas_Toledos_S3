@@ -55,31 +55,22 @@
 
 
         <div class="container">
-            <h1 class="text-center">Inicio de sesión</h1>
+            <h1 class="text-center">Recupera tu constaseña</h1>
             <div class="row justify-content-center">
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">
-                            <form id="formulario_ingreso" action="" novalidate>
+                            <form id="formulario_email" action="" novalidate>
                                 <div class="mb-3">
-                                    <label for="usuarioLogin" class="form-label">Nombre de Usuario</label>
-                                    <input type="text" class="form-control" name="usuarioLogin" id="usuarioLogin"
-                                        placeholder="Ingrese un nombre de usuario">
-                                    <small class="text-danger" id="usuarioLogin-error"></small>
+                                    <label for="verificacionEmail" class="form-label">Ingrese su correo electrónico<span style="color: red;">*</span></label>
+                                    <input type="email" class="form-control" name="verificacionEmail" id="verificacionEmail" required autocomplete="on"
+                                        placeholder="Ingrese su correo">
+                                    <small class="text-danger" id="verificacionEmail-error"></small>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="passLogin" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" name="passLogin" id="passLogin" required autocomplete="on"
-                                        placeholder="Ingrese su contraseña">
-                                    <small class="text-danger" id="passLogin-error"></small>
-                                </div>
-
-                                <a href="/formulario_pwolvidada.html">¿Olvidaste tu contraseña?</a>
 
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-primary"
-                                        style="width: 40%; margin-bottom: 5px">Iniciar sesión</button>
+                                        style="width: 40%; margin-bottom: 5px">Aceptar</button>
                                 </div>
 
                                 <div class="d-grid">

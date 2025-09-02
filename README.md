@@ -2,7 +2,7 @@
 
 --Descripción:
 Proyecto de estudiantes DUOCUC, aprendiendo HTML, CSS y JavaScript.
-Creando una página de videojuegos que se encuentran en distintas categorías. Se muestra una imagen, precio y descripción sobre el juego.
+Creando una página de venta de accesorios de celulares que se encuentran en distintas categorías. Se muestran detalles sobre los distintos productos como imágenes, precios, etc.
 
 --Instrucciones de uso:
 
