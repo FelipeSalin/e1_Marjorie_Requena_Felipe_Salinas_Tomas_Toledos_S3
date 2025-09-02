@@ -220,7 +220,7 @@ if (formLogin) {
             localStorage.setItem('rolUsuario', usuarioEncontrado.rol);
             localStorage.setItem('nombreUsuario', usuarioEncontrado.usuario);
 
-            window.location.href = '/index2.html';
+            window.location.href = '/index.html';
         } else {
             alert('Usuario o contraseña incorrectos');
         }
