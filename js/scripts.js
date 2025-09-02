@@ -163,3 +163,32 @@ if (passForm) {
         }
     })
 }
+
+
+/* Creando usuarios de prueba*/
+const users = [
+    {usuario: 'admin', contrasenna: 'admin1234', rol: 'admin'},
+    {usuario: 'cliente', contrasenna: 'cliente1234', rol: 'cliente'}
+];
+
+const formLogin = document.getElementById('formulario_ingreso');
+
+if (formLogin) {
+    formLogin.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const inputUsuario = document.getElementById('usuarioLogin').value.trim();
+        const inputContrasenna = document.getElementById('passLogin').value;
+
+        const usuarioEncontrado = users.find(u => u.usuario === inputUsuario && u.contrasenna === inputContrasenna);
+
+        if (usuarioEncontrado) {
+            localStorage.setItem('rolUsuario', usuarioEncontrado.rol);
+            localStorage.setItem('nombreUsuario', usuarioEncontrado.usuario);
+
+            window.location.href = '/index2.html';
+        } else {
+            alert('Usuario o contraseña incorrectos');
+        }
+    });
+}
