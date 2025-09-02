@@ -126,3 +126,40 @@ if (loginForm) {
         }
     })
 }
+
+/* Declarando errores de formulario nueva contraseña*/
+const passForm = document.getElementById('formulario_contrasenna');
+
+const newPass = document.getElementById('newPass');
+const newPass2 = document.getElementById('newPass2')
+
+if (passForm) {
+    passForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const contrasennas = ['newPass', 'newPass2'];
+        limpiarErrores(contrasennas);
+
+        let valido = true;
+
+        if (newPass.value === '') {
+            mostrarError('newPass', 'Por favor, ingresa una constraseña válida');
+            valido = false;
+        } else {
+            const contrasennaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,18}$/;
+            if (!contrasennaRegex.test(newPass.value)) {
+                mostrarError('newPass', 'La contraseña debe tener de 6 a 18 caracteres, incluir al menos una mayúscula, un número y no contener caracteres especiales');
+                valido = false;
+            }
+        }
+
+        if (newPass2.value !== newPass.value) {
+            mostrarError('newPass2', 'La constraseña debe ser igual a la anterior');
+            valido = false;
+        }
+
+        if (valido) {
+            alert('Cambio de contraseña exitoso');
+        }
+    })
+}
