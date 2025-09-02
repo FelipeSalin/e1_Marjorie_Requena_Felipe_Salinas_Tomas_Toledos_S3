@@ -127,6 +127,40 @@ if (loginForm) {
     })
 }
 
+/* Declarando errores de formulario recuperar contraseña*/
+const mailForm = document.getElementById('formulario_email');
+
+const verificacionEmail = document.getElementById('verificacionEmail');
+
+if (mailForm) {
+    mailForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const mail = ['verificacionEmail'];
+        limpiarErrores(mail);
+
+        let valido = true;
+
+        if (verificacionEmail.value.trim() === '') {
+            mostrarError('verificacionEmail', 'Por favor, ingresa un correo válido');
+            valido = false;
+        } else {
+            const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!correoRegex.test(verificacionEmail.value)) {
+                mostrarError('verificacionEmail', 'El campo email debe tener un formato válido');
+                valido = false;
+            }
+        }
+
+        if (valido) {
+            alert('Email correcto');
+            window.location.href = '/formulario_recuperarpw.html';
+        }
+    })
+}
+
+
+
 /* Declarando errores de formulario nueva contraseña*/
 const passForm = document.getElementById('formulario_contrasenna');
 
