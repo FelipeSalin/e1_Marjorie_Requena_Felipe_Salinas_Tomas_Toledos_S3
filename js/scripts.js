@@ -199,6 +199,68 @@ if (passForm) {
 }
 
 
+/* Declarando errores de formulario de modificación*/
+const formCambio = document.getElementById('formulario_modificacion');
+
+const modifNombre = document.getElementById('modifNombre');
+const modifUsuario = document.getElementById('modifUsuario');
+const modifCorreo = document.getElementById('modifMail');
+const modifContrasenna = document.getElementById('modifPass');
+const modifContrasenna2 = document.getElementById('modifPass2');
+
+if (formCambio) {
+    formCambio.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const modifCampos = ['modifNombre', 'modifUsuario', 'modifMail', 'modifPass', 'modifPass2'];
+        limpiarErrores(modifCampos);
+
+        let valido = true;
+
+        if (modifNombre.value.trim() === '') {
+            mostrarError('modifNombre', 'Por favor, ingresa un nombre válido');
+            valido = false;
+        }
+
+        if (modifUsuario.value.trim() === '') {
+            mostrarError('modifUsuario', 'Por favor, ingresa un nombre de usuario válido');
+            valido = false;
+        }
+
+        if (modifCorreo.value.trim() === '') {
+            mostrarError('modifMail', 'Por favor, ingresa un correo válido');
+            valido = false;
+        } else {
+            const modifMailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!modifMailRegex.test(modifCorreo.value)) {
+                mostrarError('modifMail', 'El campo email debe tener un formato válido');
+                valido = false;
+            }
+        }
+
+        if (modifContrasenna.value === '') {
+            mostrarError('modifPass', 'Por favor, ingresa una constraseña válida');
+            valido = false;
+        } else {
+            const modifPasswordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,18}$/;
+            if (!modifPasswordRegex.test(contrasennaInput.value)) {
+                mostrarError('modifPass', 'La contraseña debe tener de 6 a 18 caracteres, incluir al menos una mayúscula, un número y no contener caracteres especiales');
+                valido = false;
+            }
+        }
+
+        if (modifContrasenna2.value !== contrasennaInput.value) {
+            mostrarError('modifPass2', 'La constraseña debe ser igual a la anterior');
+            valido = false;
+        }
+
+        if (valido) {
+            alert('¡Cambios realizados Exitosamente!');
+            form.submit();
+        }
+    });
+}
+
+
 /* Creando usuarios de prueba*/
 const users = [
     {usuario: 'admin', contrasenna: 'admin1234', rol: 'admin'},
@@ -226,3 +288,26 @@ if (formLogin) {
         }
     });
 }
+
+
+/* Usuario logueado, se deja de mostrar botones "Inicio sesión", "Regístrate acá"
+   y aparece botón "Cerrar sesión"*/
+document.addEventListener('DOMContentLoaded', function() {
+    const btnLogin = document.getElementById('btnLogin');
+    const btnRegistrar = document.getElementById('btnRegistrar');
+    const rolUsuario = localStorage.getItem('rolUsuario');
+    const nombreUsuario = localStorage.getItem('nombreUsuario');
+    const btnLogout = document.getElementById('btnLogout');
+
+    if (rolUsuario && nombreUsuario) {
+        btnLogin.style.display = 'none';
+        btnRegistrar.style.display = 'none';
+        btnLogout.classList.remove('d-none');
+
+        btnLogout.addEventListener('click', function () {
+            localStorage.removeItem('rolUsuario');
+            localStorage.removeItem('nombreUsuario');
+            window.location.reload();
+        })
+    }
+})
